@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentCommandLineParser" Version="1.4.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <RuntimeIdentifiers>win10-x64;osx.10.11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
 </Project>
