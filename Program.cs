@@ -10,7 +10,7 @@ namespace EncryptStringSample
         public string StringValue { get; set; }
 
     }
-
+    [Flags]
     public enum ActionType
     {
         Encrypt,
@@ -32,8 +32,7 @@ namespace EncryptStringSample
               .As('k', "encryptionkey");
 
             var result = p.Parse(args);
-            var x =p.Object.Action.ToString();
-            
+
             if (result.HasErrors == false)
             {
                 string password = p.Object.EncryptionKey;
@@ -48,15 +47,14 @@ namespace EncryptStringSample
                     Console.WriteLine("Using environment variable to encrypt");
                 }
 
-                if(Equals(p.Object.Action.ToString(),"Encrypt"))
-                //if (p.Object.Action.HasFlag(ActionType.Encrypt))                                
+                if (p.Object.Action.HasFlag(ActionType.Encrypt))
                 {
                     Console.WriteLine("we are inside encrypted block");
                     string encryptedstring = StringCipher.Encrypt(p.Object.StringValue, password);
                     Console.WriteLine("Encrypted value: " + encryptedstring);
                 }
 
-                if (Equals(p.Object.Action.ToString(),"Decrypt"))
+                if (p.Object.Action.HasFlag(ActionType.Decrypt))
                 {
                     string decryptedstring = StringCipher.Decrypt(p.Object.StringValue, password);
                     Console.WriteLine("Decrypted value: " + decryptedstring);
