@@ -44,12 +44,11 @@ namespace EncryptStringSample
                         return;
                     }
                     password = Environment.GetEnvironmentVariable("ENCRYPTION_KEY");
-                    Console.WriteLine("Using environment variable to encrypt");
+                    Console.WriteLine("Using environment variable as key");
                 }
 
                 if (p.Object.Action.Equals(ActionType.Encrypt))
                 {
-                    Console.WriteLine("we are inside encrypted block");
                     string encryptedstring = StringCipher.Encrypt(p.Object.StringValue, password);
                     Console.WriteLine("Encrypted value: " + encryptedstring);
                 }
